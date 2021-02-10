@@ -1,38 +1,15 @@
-import React,{useState} from 'react';
-import axios from "axios";
-import History from "./History";
+import React from 'react';
+import { HashRouter, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import History from "./components/History"
 
 function App() {
-  const [name,setName]=useState();
-  const search=()=>{
-    console.log({name});
-    axios.post('/search', {
-      SummonerName: {name}
-      })
-    .then(function (response) {
-      console.log(response);
-     })
-    .catch(function (error) {
-      console.log(error);
-      });
-    // 새로운 페이지 렌더링?
-    <History
-      name={name}
-    />
-  }
-  const change=(e)=>{
-    console.log(e.target.value);
-    setName(e.target.value);
-  }
-  return (
-    <div className="App">
-      <header>koGG</header>
-      <section>
-        <input type="text" placeholder="아이디를 입력하세요." value={name} onChange={change}></input>
-        <input type="button" value="검색!" onClick={search} ></input>
-      </section>
-    </div>
-  );
+  return(
+    <HashRouter>
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/history/userName=:name" component={History} />
+    </HashRouter>
+  )
 }
 
 export default App;
