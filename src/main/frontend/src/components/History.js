@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 
+const SECRET='개인키' // 숨겻
+
 class History extends React.Component{
     componentDidMount(){
         const {location,history}= this.props;
@@ -8,7 +10,7 @@ class History extends React.Component{
             history.push("/");
         }
         // riot api 승인받으면 바꿈
-        const temp=axios.get('https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=7505633b57c0264a95d188319bfc3798&targetDt=20120101')
+        const temp=axios.get(SECRET)
         .then(function (response) {
         console.log(response);
         })
